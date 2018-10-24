@@ -77,6 +77,8 @@ $container = $app->getContainer();
 
 $app->getContainer()->get('hook_emitter')->run('application.boot', $app);
 
+$trustedProxies = \Directus\get_directus_setting('global', 'trusted_proxies');
+
 // TODO: Implement a way to register middleware with a name
 //       Allowing the app to add multiple into one
 //       Ex: $app->add(['auth', 'cors']);
@@ -87,6 +89,7 @@ $middleware = [
     'table_gateway' => new \Directus\Application\Http\Middleware\TableGatewayMiddleware($app->getContainer()),
     'rate_limit_ip' => new \Directus\Application\Http\Middleware\IpRateLimitMiddleware($app->getContainer()),
     'ip' => new RKA\Middleware\IpAddress(),
+    'proxy' => new \RKA\Middleware\ProxyDetectionMiddleware(is_array($trustedProxies) ? $trustedProxies : []),
     'cors' => new \Directus\Application\Http\Middleware\CorsMiddleware($app->getContainer()),
     'auth' => new \Directus\Application\Http\Middleware\AuthenticationMiddleware($app->getContainer()),
     'auth_user' => new \Directus\Application\Http\Middleware\AuthenticatedMiddleware($app->getContainer()),
@@ -96,6 +99,7 @@ $middleware = [
 ];
 
 $app->add($middleware['rate_limit_ip'])
+    ->add($middleware['proxy'])
     ->add($middleware['ip'])
     ->add($middleware['cors']);
 
