@@ -4,7 +4,7 @@ services:
     build: "docker/php-apache/"
     container_name: "api-php-apache"
     volumes:
-      - ./:/var/www/html    
+      - ./:/var/www/html
     depends_on:
       - mysql
     restart: always
@@ -19,5 +19,5 @@ services:
 #    volumes:
 #      - ./volumes/mysql:/var/lib/mysql
     restart: always
-    expose:
-      - "3306"
+    ports:
+      - "8806:3306"

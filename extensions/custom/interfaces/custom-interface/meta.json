@@ -1,0 +1,21 @@
+{
+  "name": "custom-interface",
+  "version": "1.0.10",
+  "icon": "text_fields",
+  "types": [
+    "string"
+  ],
+  "recommended": {
+    "length": 200
+  },
+  "options": {
+    "placeholder": {
+      "name": "placeholder",
+      "comment": "placeholder_comment",
+      "interface": "text-input",
+      "length": 200
+    }
+  },
+  "translation": {
+  }
+}

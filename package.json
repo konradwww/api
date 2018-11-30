@@ -20,6 +20,14 @@
   },
   "homepage": "https://github.com/directus/api#readme",
   "devDependencies": {
+    "@vue/component-compiler-utils": "^2.3.0",
+    "sass": "^1.15.1",
+    "vue-template-compiler": "^2.5.17",
     "vuepress": "^0.7.1"
+  },
+  "dependencies": {
+    "@directus/mixins": "^1.0.0",
+    "vue": "^2.5.17",
+    "vue-hot-reload-api": "^2.3.1"
   }
 }
